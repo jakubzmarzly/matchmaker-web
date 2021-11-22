@@ -2,12 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Matchmaker Lite</title>
+    <title>Matchmaker</title>
 </head>
 
 <!--
     Author: Jakub Zmarzly
 -->
+
 <body>
+    <h1>&#128151;MATCHMAKER&#128151;</h1>
+    <p>Looking for the perfect partner? I know I am. You will be answering a series of five questions to
+        determine if we are meant to be together. Answer these five questions depending on if you
+        agree or disagree with the given statement. A final score will then be calculated. Good luck.
+    </p>
+
+    <label>The Clippers will win the 2021-22 NBA Finals.</label> <br>
+    <select id="q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree or Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br><br>
+
+    <label>Italian beef is the best food.</label> <br>
+    <select id="q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree or Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br><br>
+    
+    <label>Tofu is delicious!</label> <br>
+    <select id="q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree or Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br><br>
+
+    <label>Spring is the best season.</label> <br>
+    <select id="q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree or Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br><br>
+
+    <label>Breaking Bad is the best show of all time</label> <br>
+    <select id="q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree or Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="CalculateTotalCompatibility()">Calculate Total Compatibility</button>
+    <p id="Compatibility"></p>
+
+<script>
+
+function CalculateTotalCompatibility() {
+
+    const DESIRED_RESPONSE = [
+        5,
+        4,
+        1,
+        4,
+        5,
+    ]
+
+    const MAX_SCORE = 25;
+
+    let question1Response = document.getElementById("q1").selectedOptions[0].value;
+    let question2Response = document.getElementById("q2").selectedOptions[0].value;
+    let question3Response = document.getElementById("q3").selectedOptions[0].value;
+    let question4Response = document.getElementById("q4").selectedOptions[0].value;
+    let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+    let question1Compatibility = 5-Math.abs(question1Response-DESIRED_RESPONSE[0]);
+    let question2Compatibility = 5-Math.abs(question2Response-DESIRED_RESPONSE[1]);
+    let question3Compatibility = 5-Math.abs(question3Response-DESIRED_RESPONSE[2]);
+    let question4Compatibility = 5-Math.abs(question4Response-DESIRED_RESPONSE[3]);
+    let question5Compatibility = 5-Math.abs(question5Response-DESIRED_RESPONSE[4]);
+
+    let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+
+    totalCompatibility *= 100 / MAX_SCORE;
+    totalCompatibility = Math.round(totalCompatibility);
+
+
+    document.getElementById("Compatibility").innerHTML = "Your compatibility is: " +totalCompatibility;
+}
+
+</script>
+
 </body>
 </html>
